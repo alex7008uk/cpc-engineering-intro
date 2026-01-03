@@ -357,10 +357,12 @@ body {
 .session-item {
     background-color: var(--light-bg);
     padding: 1rem;
+    padding-bottom: 3.5rem;
     margin-bottom: 0.8rem;
     border-radius: 8px;
     border-left: 4px solid var(--primary-color);
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .session-item:hover {
@@ -368,11 +370,10 @@ body {
     transform: translateX(5px);
 }
 
-.session-header {
+.session-info {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.6rem;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .session-batch {
@@ -381,21 +382,27 @@ body {
     font-size: 0.95rem;
 }
 
+.session-date-time {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
 .session-date {
     color: var(--text-color);
     font-size: 0.9rem;
-}
-
-.session-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    word-break: break-word;
 }
 
 .session-time {
     color: #666;
     font-size: 0.85rem;
+}
+
+.session-action {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
 }
 
 .session-link {
@@ -408,6 +415,7 @@ body {
     font-weight: 600;
     transition: all 0.3s ease;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .session-link:hover {
