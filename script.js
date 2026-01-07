@@ -93,7 +93,7 @@ const courses = [
   {
     title: "機水電工程識圖基礎培訓班-視訊課",
     description: "培訓機水電工程識圖基礎能力,提升工程人員專業技能。",
-    image: "images/機水電工程識圖基礎培訓班.jpg",
+    image: "images/機水電工程識圖基礎培訓班-視訊班.jpg",
     sessions: [
       {
         batch: "第一梯次",
@@ -112,7 +112,7 @@ const courses = [
   {
     title: "機水電工程識圖基礎培訓班",
     description: "培訓機水電工程識圖基礎能力,提升工程人員專業技能。",
-    image: "images/機水電工程識圖基礎培訓班.jpg",
+    image: "images/機水電工程識圖基礎培訓班-實體班.jpg",
     sessions: [
       {
         batch: "",
