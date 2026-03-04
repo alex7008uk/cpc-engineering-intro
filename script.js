@@ -55,7 +55,7 @@ const courses = [
     image: "images/建築工程估價班.jpg",
     sessions: [
       {
-        batch: "第一梯次",
+        batch: "第一梯次 確定開課",
         date: "03/21、22、23(六日一)",
         time: "08:30-17:30",
         url: "https://store.cpc.org.tw/Train/Contents/TC8130",
@@ -96,7 +96,7 @@ const courses = [
     image: "images/機水電工程識圖基礎培訓班-視訊班.jpg",
     sessions: [
       {
-        batch: "第一梯次",
+        batch: "第一梯次 確定開課",
         date: "04/11、12、18、19(六日)",
         time: "09:00-16:00",
         url: "https://store.cpc.org.tw/Train/Contents/TC8138",
