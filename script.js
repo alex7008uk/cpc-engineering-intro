@@ -97,9 +97,9 @@ const courses = [
     sessions: [
       {
         batch: "第一梯次 確定開課",
-        date: "04/11、12、18、19(六日)",
+        date: "07/04、05、11、12(六日)",
         time: "09:00-16:00",
-        url: "https://store.cpc.org.tw/Train/Contents/TC8138",
+        url: "https://store.cpc.org.tw/Train/Contents/TC8140",
       },
       {
         batch: "第二梯次",
@@ -109,20 +109,7 @@ const courses = [
       },
     ],
   },
-  {
-    title: "機水電工程識圖基礎培訓班",
-    description: "培訓機水電工程識圖基礎能力,提升工程人員專業技能。",
-    image: "images/機水電工程識圖基礎培訓班-實體班.jpg",
-    sessions: [
-      {
-        batch: "",
-        date: "07/04、05、11、12(六日)",
-        time: "09:00-16:00",
-        url: "https://store.cpc.org.tw/Train/Contents/TC8140",
-      },
-    ],
-  },
-  {
+   {
     title: "建築物室內裝修工程管理實務班",
     description: "培訓室內裝修工程管理實務能力,提升專業技能與管理水準。",
     image: "images/建築物室內裝修工程管理實務班.jpg",
