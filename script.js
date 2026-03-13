@@ -35,10 +35,10 @@ const courses = [
     image: "images/生成式AI在土建工程之實務應用.jpg",
     sessions: [
       {
-        batch: "第一梯次",
-        date: "03/14、15、21(六日)",
+        batch: "第一梯次 確定開課",
+        date: "05/16、17、23(六日)",
         time: "09:00-16:00",
-        url: "https://store.cpc.org.tw/Train/Contents/TC8143",
+        url: "https://store.cpc.org.tw/Train/Contents/TD5328",
       },
       {
         batch: "第二梯次",
