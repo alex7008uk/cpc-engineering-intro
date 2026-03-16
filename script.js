@@ -77,13 +77,13 @@ const courses = [
       "images/案例式導讀履約管理防禦工事讀本與日本工事寫真計畫導入應用_聚焦在中小規模工程.jpg",
     sessions: [
       {
-        batch: "第一梯次",
+        batch: "第一梯次 因課程調整取消",
         date: "03/28、29(六日)",
         time: "09:00~17:00",
         url: "https://store.cpc.org.tw/Train/Contents/TC8134",
       },
       {
-        batch: "第二梯次",
+        batch: "第二梯次 因課程調整取消",
         date: "10/17、18(六日)",
         time: "09:00~17:00",
         url: "https://store.cpc.org.tw/Train/Contents/TC8135",
