@@ -1,42 +1,74 @@
+/* ==================== Google Fonts ==================== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
 /* ==================== 基礎樣式重置 ==================== */
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 :root {
-    --primary-color: #dba134;
+    /* 主色系：金黃深棕 */
+    --primary-color:  #dba134;
+    --primary-dark:   #8a5f1a;
+    --primary-deeper: #50452c;
+    --primary-light:  #fdf8ec;
     --secondary-color: #50452c;
-    --accent-color: #e74c3c;
+    --accent-color:   #e74c3c;
+
+    /* 文字 */
     --text-color: #333;
-    --light-bg: #f8f9fa;
-    --white: #ffffff;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --text:       #1A1A1A;
+    --text-sub:   #4A4A5A;
+
+    /* 背景 / 邊框 */
+    --light-bg:   #f8f9fa;
+    --white:      #ffffff;
+    --border:     #e8dfc8;
+
+    /* 字型 */
+    --font: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+
+    /* 圓角 */
+    --radius-xl: 50px;
+
+    /* 陰影 */
+    --shadow:    0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-sm: 0 2px 8px rgba(219, 161, 52, 0.08);
+    --shadow-lg: 0 12px 32px rgba(219, 161, 52, 0.18);
+
+    /* 過渡 */
+    --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
+    font-family: var(--font);
+    line-height: 1.7;
     color: var(--text-color);
     background-color: var(--white);
+    -webkit-font-smoothing: antialiased;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 2rem;
 }
 
 /* ==================== 導航列 ==================== */
 .navbar {
     background-color: var(--white);
-    box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 1rem 0;
+    padding: 0.9rem 0;
+    transition: box-shadow 0.3s ease;
 }
 
 .navbar .container {
@@ -46,18 +78,23 @@ body {
 }
 
 .logo {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     line-height: 0;
+    transition: opacity 0.2s ease;
 }
 
 .logo img {
-    height: 40px;
+    height: 38px;
     width: auto;
-    transition: opacity 0.3s ease;
 }
 
-.logo:hover img {
-    opacity: 0.8;
+.logo:hover { opacity: 0.8; }
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 .nav-links {
@@ -68,80 +105,154 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-sub);
+    font-size: 0.92rem;
     font-weight: 500;
-    transition: color 0.3s ease;
+    letter-spacing: 0.04em;
+    padding-bottom: 3px;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
     color: var(--primary-color);
 }
 
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 /* ==================== 英雄區塊 ==================== */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 55%, var(--primary-deeper) 100%);
     color: var(--white);
-    padding: 120px 0;
+    padding: 120px 0 130px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -15%;
+    right: -8%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 65%);
+    pointer-events: none;
 }
 
 .hero-content {
-    animation: fadeInUp 1s ease;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.85s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.hero-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.2rem;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--radius-xl);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .hero-title {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
     font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.25;
+    color: var(--white);
+    margin-bottom: 1.2rem;
 }
 
 .hero-subtitle {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    opacity: 0.9;
-}
-
-.hero-description {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    opacity: 0.85;
-    white-space: nowrap;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.72);
+    letter-spacing: 0.04em;
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-button {
     display: inline-block;
-    padding: 15px 40px;
-    background-color: var(--accent-color);
-    color: var(--white);
+    padding: 13px 40px;
+    background-color: var(--white);
+    color: var(--primary-color);
     text-decoration: none;
-    border-radius: 50px;
+    font-size: 0.95rem;
     font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow);
+    letter-spacing: 0.06em;
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--white);
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .cta-button:hover {
+    background-color: transparent;
+    color: var(--white);
     transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
 }
 
-/* ==================== 經歷區塊 ==================== */
+/* ==================== 講師群介紹區塊 ==================== */
 .about {
-    padding: 80px 0;
-    background-color: var(--light-bg);
+    padding: 100px 0;
+    background-color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle dot-grid texture */
+.about::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(219, 161, 52, 0.07) 1px, transparent 1px);
+    background-size: 36px 36px;
+    pointer-events: none;
 }
 
 .section-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
+    font-weight: 700;
     margin-bottom: 3rem;
-    color: var(--secondary-color);
+    color: var(--text);
+    letter-spacing: 0.06em;
     position: relative;
     padding-bottom: 1rem;
 }
@@ -152,193 +263,181 @@ body {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
+    width: 48px;
+    height: 3px;
     background-color: var(--primary-color);
     border-radius: 2px;
 }
 
-.about-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
 .instructor-profile {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    padding: 3.5rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    max-width: 1100px;
+    max-width: 860px;
     margin: 0 auto;
-    animation: fadeIn 0.6s ease;
-    display: flex;
-    gap: 3.5rem;
-    align-items: flex-start;
-    border: 1px solid rgba(52, 152, 219, 0.1);
-}
-
-.instructor-photo {
-    flex-shrink: 0;
-    width: 280px;
-    position: relative;
-}
-
-.instructor-photo::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    border-radius: 20px;
-    opacity: 0.1;
-    z-index: 0;
-}
-
-.instructor-photo img {
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
     position: relative;
     z-index: 1;
-    border: 4px solid var(--white);
-}
-
-.instructor-photo img:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 .instructor-info {
-    flex: 1;
-}
-
-.instructor-info h3 {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 3px solid var(--primary-color);
-    font-weight: 700;
-}
-
-.instructor-info h4 {
-    font-size: 1.4rem;
-    color: var(--secondary-color);
-    margin-top: 2.5rem;
-    margin-bottom: 1.2rem;
-    font-weight: 600;
-    padding-left: 1rem;
-    border-left: 4px solid var(--primary-color);
-}
-
-.instructor-info p {
-    color: var(--text-color);
-    line-height: 1.9;
-    margin: 0;
-    font-size: 1.05rem;
-    display: block;
-}
-
-.experience-item {
-    background: var(--white);
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: fadeIn 0.6s ease;
-}
-
-.experience-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.experience-title {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.experience-period {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    font-style: italic;
-}
-
-.experience-description {
-    color: var(--text-color);
-    line-height: 1.8;
-}
-
-/* ==================== 課程區塊 ==================== */
-.courses {
-    padding: 80px 0;
-    background-color: var(--white);
-}
-
-.courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-    align-items: stretch;
-    /* 讓所有卡片高度一致 */
-}
-
-.course-card {
-    background: var(--white);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: fadeInUp 0.6s ease;
     display: flex;
     flex-direction: column;
 }
 
+.info-item {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(219, 161, 52, 0.18);
+    align-items: center;
+    transition: padding-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.info-item:first-child {
+    border-top: 1px solid rgba(219, 161, 52, 0.18);
+}
+
+.info-item:hover {
+    padding-left: 0.8rem;
+}
+
+.info-num {
+    display: block;
+    font-size: 3.2rem;
+    font-weight: 300;
+    color: var(--primary-color);
+    opacity: 0.18;
+    line-height: 1;
+    text-align: right;
+    letter-spacing: -0.04em;
+    user-select: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-variant-numeric: tabular-nums;
+}
+
+.info-item:hover .info-num {
+    opacity: 0.55;
+    transform: scale(1.1);
+}
+
+.info-text {
+    font-size: 1rem;
+    color: var(--text-sub);
+    line-height: 2;
+    letter-spacing: 0.02em;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.info-item:hover .info-text {
+    color: var(--text);
+}
+
+/* ==================== 課程區塊 ==================== */
+.courses {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #fdf8ec 0%, #f9f3e3 100%);
+    position: relative;
+}
+
+.courses::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--primary-color) 50%, transparent 100%);
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.course-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(80, 69, 44, 0.08);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeInUp 0.6s ease both;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(219, 161, 52, 0.15);
+    position: relative;
+}
+
+.course-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
 .course-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(80, 69, 44, 0.16);
+}
+
+.course-card:hover::before {
+    opacity: 1;
 }
 
 .course-image {
     width: 100%;
-    height: 200px;
+    height: 210px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0f0f0;
+    position: relative;
+    background-color: var(--primary-light);
+}
+
+.course-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.88));
+    pointer-events: none;
+    z-index: 1;
 }
 
 .course-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
 }
 
 .course-card:hover .course-image img {
-    transform: scale(1.05);
+    transform: scale(1.07);
 }
 
 .course-content {
-    padding: 1.5rem;
+    padding: 1.6rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .course-title {
-    font-size: 1.4rem;
+    font-size: 1.05rem;
+    font-weight: 700;
     color: var(--secondary-color);
-    margin-bottom: 0.8rem;
-    height: 3.4rem;
-    /* 固定標題高度為兩行 */
-    line-height: 1.7rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -346,11 +445,10 @@ body {
 }
 
 .course-description {
-    color: #666;
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    height: 4.8rem;
-    /* 固定描述高度為三行 */
+    font-size: 0.875rem;
+    color: var(--text-sub);
+    margin-bottom: 1.2rem;
+    line-height: 1.75;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -358,127 +456,158 @@ body {
 }
 
 .course-sessions {
-    margin-top: 1.5rem;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(219, 161, 52, 0.18);
 }
 
 .session-item {
-    background-color: var(--light-bg);
-    padding: 1rem;
-    padding-bottom: 3.5rem;
-    margin-bottom: 0.8rem;
+    background: linear-gradient(135deg, #fdf8ec 0%, #faf4e4 100%);
+    border: 1px solid rgba(219, 161, 52, 0.22);
+    border-left: 3px solid var(--primary-color);
     border-radius: 8px;
-    border-left: 4px solid var(--primary-color);
-    transition: all 0.3s ease;
-    position: relative;
+    padding: 0.75rem 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
 .session-item:hover {
-    background-color: #e8f4f8;
-    transform: translateX(5px);
+    background: linear-gradient(135deg, #fdf0d0 0%, #fae8c0 100%);
+    border-color: rgba(219, 161, 52, 0.45);
+    border-left-color: var(--primary-dark);
+    transform: translateX(3px);
 }
 
 .session-info {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.15rem;
+    min-width: 0;
 }
 
 .session-batch {
-    font-weight: 600;
-    color: var(--primary-color);
-    font-size: 0.95rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: 0.04em;
+    line-height: 1.4;
 }
 
 .session-date-time {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.1rem;
 }
 
 .session-date {
+    font-size: 0.82rem;
     color: var(--text-color);
-    font-size: 0.9rem;
+    line-height: 1.5;
     word-break: break-word;
 }
 
 .session-time {
-    color: #666;
-    font-size: 0.85rem;
+    font-size: 0.77rem;
+    color: var(--text-sub);
 }
 
 .session-action {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-}
-
-.session-link {
-    background-color: var(--accent-color);
-    color: var(--white);
-    padding: 6px 16px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    white-space: nowrap;
     flex-shrink: 0;
 }
 
+.session-link {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(138, 95, 26, 0.25);
+}
+
 .session-link:hover {
-    background-color: #c0392b;
-    transform: scale(1.05);
-    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+    transform: scale(1.06);
+    box-shadow: 0 4px 14px rgba(138, 95, 26, 0.38);
 }
 
 /* ==================== 頁腳 ==================== */
 .footer {
-    background-color: var(--secondary-color);
-    color: var(--white);
-    padding: 2.5rem 0;
-    margin-top: 4rem;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-deeper) 100%);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 3.5rem 0 2rem;
+    border-top: 4px solid var(--primary-color);
 }
 
 .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
 }
 
 .footer-contact {
-    text-align: left;
+    max-width: 760px;
 }
 
 .footer-contact p {
     margin: 0.3rem 0;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    line-height: 1.8;
 }
 
 .footer-contact strong {
-    font-size: 1.1rem;
     display: block;
-    margin-bottom: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.8rem;
+}
+
+.footer-contact p:nth-child(2) {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 0.04em;
 }
 
 .footer-contact a {
-    color: var(--white);
-    text-decoration: underline;
-    transition: opacity 0.3s ease;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    padding-bottom: 1px;
+    transition: opacity 0.2s ease;
 }
 
-.footer-contact a:hover {
-    opacity: 0.8;
+.footer-contact a:hover { opacity: 0.8; }
+
+.footer-bio {
+    margin-top: 1.2rem !important;
+    font-size: 0.82rem !important;
+    color: rgba(255, 255, 255, 0.35) !important;
+    line-height: 2 !important;
+    white-space: pre-line;
 }
 
-.footer-copyright {
-    text-align: right;
+.footer-bottom {
+    text-align: center;
 }
 
-.footer-copyright p {
-    margin: 0;
-    font-size: 0.9rem;
-    opacity: 0.9;
+.footer-bottom p {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.1em;
 }
 
 /* ==================== 動畫效果 ==================== */
@@ -508,21 +637,20 @@ body {
 
 /* 平板 */
 @media (max-width: 768px) {
+    .hero {
+        padding: 90px 0 100px;
+    }
+
     .hero-title {
         font-size: 2.2rem;
     }
 
     .hero-subtitle {
-        font-size: 1.1rem;
-    }
-
-    .hero-description {
-        font-size: 0.85rem;
-        white-space: normal;
+        font-size: 0.95rem;
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: 1.7rem;
     }
 
     .nav-links {
@@ -530,27 +658,25 @@ body {
     }
 
     .courses-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 1.5rem;
     }
 
-    .about {
-        padding: 60px 0;
-    }
-
     .courses {
-        padding: 60px 0;
+        padding: 70px 0;
     }
 
-    .instructor-profile {
-        flex-direction: column;
-        gap: 2rem;
-        align-items: center;
-        padding: 2rem;
+    .about {
+        padding: 70px 0;
     }
 
-    .instructor-photo {
-        width: 200px;
+    .info-item {
+        grid-template-columns: 68px 1fr;
+        gap: 1.4rem;
+    }
+
+    .info-num {
+        font-size: 2.4rem;
     }
 
     .nav-right {
@@ -559,45 +685,44 @@ body {
         align-items: flex-end;
     }
 
-    .contact-info {
-        font-size: 0.75rem;
-        text-align: right;
-    }
-
     .footer-content {
         flex-direction: column;
         text-align: center;
         gap: 1.5rem;
     }
 
-    .footer-contact,
-    .footer-copyright {
+    .footer-contact {
         text-align: center;
     }
 }
 
 /* 手機 */
 @media (max-width: 480px) {
+    .container {
+        padding: 0 1.2rem;
+    }
+
     .hero {
-        padding: 80px 0;
+        padding: 70px 0 80px;
     }
 
     .hero-title {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
+        letter-spacing: 0.06em;
+    }
+
+    .hero-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
-    }
-
-    .hero-description {
-        font-size: 0.95rem;
-        white-space: normal;
+        font-size: 0.88rem;
     }
 
     .navbar .container {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.7rem;
     }
 
     .nav-right {
@@ -608,17 +733,15 @@ body {
     }
 
     .nav-links {
-        gap: 0.8rem;
-        font-size: 0.9rem;
+        gap: 1.2rem;
     }
 
-    .contact-info {
-        font-size: 0.7rem;
-        text-align: center;
+    .nav-links a {
+        font-size: 0.86rem;
     }
 
     .section-title {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
     .courses-grid {
@@ -635,27 +758,35 @@ body {
     }
 
     .about {
-        padding: 40px 0;
+        padding: 50px 0;
+    }
+
+    .info-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 1.4rem 0;
+    }
+
+    .info-item:hover {
+        padding-left: 0;
+    }
+
+    .info-num {
+        font-size: 1.8rem;
+        text-align: left;
+        opacity: 0.35;
+    }
+
+    .info-item:hover .info-num {
+        transform: none;
+    }
+
+    .info-text {
+        font-size: 0.93rem;
     }
 
     .courses {
-        padding: 40px 0;
-    }
-
-    .instructor-profile {
-        padding: 1.5rem;
-    }
-
-    .instructor-photo {
-        width: 180px;
-    }
-
-    .instructor-info h3 {
-        font-size: 1.5rem;
-    }
-
-    .instructor-info h4 {
-        font-size: 1.1rem;
+        padding: 50px 0;
     }
 
     /* 梯次資訊響應式調整 */
@@ -686,7 +817,3 @@ body {
     }
 }
 
-/* 平滑滾動 */
-html {
-    scroll-behavior: smooth;
-}
