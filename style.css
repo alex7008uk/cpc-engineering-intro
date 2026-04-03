@@ -200,10 +200,26 @@ body {
     color: rgba(255, 255, 255, 0.72);
     letter-spacing: 0.04em;
     line-height: 1.9;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.6rem;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.hero-description {
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.58);
+    letter-spacing: 0.03em;
+    line-height: 2;
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .cta-button {
@@ -718,6 +734,11 @@ body {
 
     .hero-subtitle {
         font-size: 0.88rem;
+    }
+
+    .hero-description {
+        font-size: 0.82rem;
+        padding: 0.8rem 1.1rem;
     }
 
     .navbar .container {
